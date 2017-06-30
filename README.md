@@ -20,7 +20,7 @@ The API is only available after the client has successfully loaded,<br /> otherw
 In the case the client is not fully synced all routes may return intermediate/old values.
 
 Each API entry contains an example call to help provide understanding of how to use the call.
-These examples rely on curl being installed and Shift running on the localhost.
+These examples rely on curl being installed and Oxycoin running on the localhost.
 The examples also include ```<field>;``` use this for easy identification of what needs to be changed for the call to function.
 
 ##Accounts
@@ -303,7 +303,7 @@ PUT /api/transactions
 
     {
     "secret" : "Secret key of account",
-    "amount" : /* Amount of transaction * 10^8. Example: to send 1.1234 SHIFT, use 112340000 as amount */,
+    "amount" : /* Amount of transaction * 10^8. Example: to send 1.1234 Oxycoin, use 112340000 as amount */,
     "recipientId" : "Recipient of transaction. Address or username.",
     "publicKey" : "Public key of sender account, to verify secret passphrase in wallet. Optional, only for UI",
     "secondSecret" : "Secret key from second transaction, required if user uses second signature"
@@ -478,7 +478,7 @@ Gets a list peer versions and build times
 
     {
       "success": true,
-      "version": "version of Shift",
+      "version": "version of Oxycoin",
       "build": "time of build"
     }
 
@@ -621,9 +621,9 @@ Gets the forging reward for blocks.
 
     curl -k -X GET http://localhost:9305/api/blocks/getReward
 
-###Get supply of available Shift
+###Get supply of available Oxycoin
 
-Gets the total amount of Shift in circulation
+Gets the total amount of Oxycoin in circulation
 
     GET /api/blocks/getSupply
 
@@ -968,7 +968,7 @@ Disables forging for a delegate on the client node.
 
 ###Get forged by account
 
-Get amount of Shift forged by an account.
+Get amount of Oxycoin forged by an account.
 
     GET /api/delegates/forging/getForgedByAccount?generatorPublicKey=generatorPublicKey
 
@@ -1409,4 +1409,4 @@ This API is based on the LISK API, the syntax is nearly the same.
 
 ###Informations
 Initial Written by List Team<br />
-Ported to Shift-Github Repo by LeChuckDE
+Ported to Oxycoin-Github Repo by LeChuckDE

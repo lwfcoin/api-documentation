@@ -2,7 +2,7 @@
 
 ##Introduction
 
-OXYcoin client API. All API endpoints are relative to the /api prefix.
+LWF client API. All API endpoints are relative to the /api prefix.
 
 All endpoints will return:
 
@@ -20,7 +20,7 @@ The API is only available after the client has successfully loaded,<br /> otherw
 In the case the client is not fully synced all routes may return intermediate/old values.
 
 Each API entry contains an example call to help provide understanding of how to use the call.
-These examples rely on curl being installed and Oxycoin running on the localhost.
+These examples rely on curl being installed and LWFcoin running on the localhost.
 The examples also include ```<field>;``` use this for easy identification of what needs to be changed for the call to function.
 
 ##Accounts
@@ -57,7 +57,7 @@ POST /api/accounts/open
     
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
-    http://localhost:9305/api/accounts/open
+    http://localhost:18124/api/accounts/open
 
 ###Get balance
 
@@ -76,7 +76,7 @@ address: wallet address of the account
     }
 **Example**
     
-    curl -k -X GET http://localhost:9305/api/accounts/getBalance?address=<address>
+    curl -k -X GET http://localhost:18124/api/accounts/getBalance?address=<address>
 
 ###Get account public key
 
@@ -95,7 +95,7 @@ address: wallet address of the account
 
 **Example**
     
-    curl -k -X GET http://localhost:9305/api/accounts/getPublicKey?address=<address>
+    curl -k -X GET http://localhost:18124/api/accounts/getPublicKey?address=<address>
 
 ###Generate public key
 
@@ -118,7 +118,7 @@ POST /api/accounts/generatePublicKey
     
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
-    http://localhost:9305/api/accounts/generatePublicKey
+    http://localhost:18124/api/accounts/generatePublicKey
 
 ###Get account
 
@@ -145,7 +145,7 @@ address: wallet address of an account
 
 **Example**
     
-    curl -k -X GET http://localhost:9305/api/accounts?address=<address>
+    curl -k -X GET http://localhost:18124/api/accounts?address=<address>
 
 ###Get delegates
 
@@ -165,7 +165,7 @@ address: wallet address of account
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/accounts/delegates?address=<address>
+    curl -k -X GET http://localhost:18124/api/accounts/delegates?address=<address>
 
 ###Put delegates
 
@@ -193,19 +193,19 @@ PUT /api/accounts/delegates
     
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","publicKey"="<INSERT PUBLICKEY HERE>","delegates":["<INSERT DELEGATE PUBLICKEY HERE>"]}' \
-    http://localhost:9305/api/accounts/delegates
+    http://localhost:18124/api/accounts/delegates
     
 **Example - With Second Secret**
 
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","publicKey"="<INSERT PUBLICKEY HERE>",secondSecret"="<INSERT SECONDSECRET HERE>,"delegates":["<INSERT DELEGATE PUBLICKEY HERE>"]}' \
-    http://localhost:9305/api/accounts/delegates
+    http://localhost:18124/api/accounts/delegates
     
 **Example - Multiple Votes**
 
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","publicKey"="<INSERT PUBLICKEY HERE>","delegates":["<INSERT DELEGATE PUBLICKEY HERE>","<INSERT DELEGATE PUBLICKEY HERE>"]}' \
-    http://localhost:9305/api/accounts/delegates
+    http://localhost:18124/api/accounts/delegates
     
 ##Loader
 
@@ -228,7 +228,7 @@ GET /api/loader/status
 
 **Example**
     
-    curl -k -X GET http://localhost:9305/api/loader/status/
+    curl -k -X GET http://localhost:18124/api/loader/status/
     
 ###Get synchronization status
 
@@ -247,7 +247,7 @@ GET /api/loader/status/sync
 
 **Example**
     
-    curl -k -X GET http://localhost:9305/api/loader/status/sync
+    curl -k -X GET http://localhost:18124/api/loader/status/sync
     
 ##Transactions
 
@@ -283,15 +283,15 @@ All parameters join by "OR".
 
 **Example - blockId**
 
-    curl -k -X GET http://localhost:9305/api/transactions?blockId=<blockId>
+    curl -k -X GET http://localhost:18124/api/transactions?blockId=<blockId>
     
 **Example - senderId**
 
-    curl -k -X GET http://localhost:9305/api/transactions?senderId=<senderId>
+    curl -k -X GET http://localhost:18124/api/transactions?senderId=<senderId>
     
 **Example - senderId**
 
-    curl -k -X GET http://localhost:9305/api/transactions?recipientId=<recipientId>
+    curl -k -X GET http://localhost:18124/api/transactions?recipientId=<recipientId>
     
 ###Send transaction
 
@@ -303,7 +303,7 @@ PUT /api/transactions
 
     {
     "secret" : "Secret key of account",
-    "amount" : /* Amount of transaction * 10^8. Example: to send 1.1234 Oxycoin, use 112340000 as amount */,
+    "amount" : /* Amount of transaction * 10^8. Example: to send 1.1234 LWFcoin, use 112340000 as amount */,
     "recipientId" : "Recipient of transaction. Address or username.",
     "publicKey" : "Public key of sender account, to verify secret passphrase in wallet. Optional, only for UI",
     "secondSecret" : "Secret key from second transaction, required if user uses second signature"
@@ -320,14 +320,14 @@ PUT /api/transactions
 
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","amount":<INSERT AMOUNT HERE>,"recipientId":"<INSERT WALLET ADDRESS HERE>"}' \
-    http://localhost:9305/api/transactions
+    http://localhost:18124/api/transactions
 
 **Example - Second Secret**
     
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","secondSecret":"<INSERT SECOND SECRET HERE>",
     "amount":<INSERT AMOUNT HERE>,"recipientId":"<INSERT WALLET ADDRESS HERE>"}' \
-    http://localhost:9305/api/transactions
+    http://localhost:18124/api/transactions
     
 ###Get transaction
 
@@ -360,7 +360,7 @@ id: String of transaction (String)
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/transactions/get?id=<id>
+    curl -k -X GET http://localhost:18124/api/transactions/get?id=<id>
 
 ###Get unconfirmed transaction
 
@@ -392,7 +392,7 @@ id: String of transaction (String)
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/transactions/unconfirmed/get?id=<id>
+    curl -k -X GET http://localhost:18124/api/transactions/unconfirmed/get?id=<id>
 
 ###Get list of unconfirmed transactions
 
@@ -409,7 +409,7 @@ GET /api/transactions/unconfirmed
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/transactions/unconfirmed
+    curl -k -X GET http://localhost:18124/api/transactions/unconfirmed
 
 ##Peers
 
@@ -445,7 +445,7 @@ All parameters joins by "OR".
 
 **Example**
     
-    curl -k -X GET http://localhost:9305/api/peers
+    curl -k -X GET http://localhost:18124/api/peers
     
 ###Get peer
 
@@ -465,7 +465,7 @@ GET /api/peers/get?ip=ip&port=port
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/peers/get?ip=<ip>&port=<port>
+    curl -k -X GET http://localhost:18124/api/peers/get?ip=<ip>&port=<port>
 
 ###Get peer version, build time
 
@@ -478,13 +478,13 @@ Gets a list peer versions and build times
 
     {
       "success": true,
-      "version": "version of Oxycoin",
+      "version": "version of LWFcoin",
       "build": "time of build"
     }
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/peers/version
+    curl -k -X GET http://localhost:18124/api/peers/version
     
 ##Blocks
 
@@ -527,7 +527,7 @@ Gets block by provided id.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/get?id=<id>
+    curl -k -X GET http://localhost:18124/api/blocks/get?id=<id>
 
 ###Get blocks
 
@@ -561,7 +561,7 @@ All parameters joins by OR.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks?generatorPublicKey=<generatorPublicKey>
+    curl -k -X GET http://localhost:18124/api/blocks?generatorPublicKey=<generatorPublicKey>
 
 ###Get blockchain fee
 
@@ -578,7 +578,7 @@ Get transaction fee for sending "normal" transactions.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getFee
+    curl -k -X GET http://localhost:18124/api/blocks/getFee
 
 ###Get blockchain fees schedule
 
@@ -602,7 +602,7 @@ Get transaction fee for all types of transactions.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getFees
+    curl -k -X GET http://localhost:18124/api/blocks/getFees
 
 ###Get blockchain reward schedule
 
@@ -619,11 +619,11 @@ Gets the forging reward for blocks.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getReward
+    curl -k -X GET http://localhost:18124/api/blocks/getReward
 
-###Get supply of available Oxycoin
+###Get supply of available LWFcoin
 
-Gets the total amount of Oxycoin in circulation
+Gets the total amount of LWFcoin in circulation
 
     GET /api/blocks/getSupply
 
@@ -636,7 +636,7 @@ Gets the total amount of Oxycoin in circulation
     
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getSupply
+    curl -k -X GET http://localhost:18124/api/blocks/getSupply
 
 ###Get blockchain height
 
@@ -653,7 +653,7 @@ Gets the blockchain height of the client.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getHeight
+    curl -k -X GET http://localhost:18124/api/blocks/getHeight
 
 ###Gets status of height, fee, milestone, blockreward and supply
 
@@ -674,7 +674,7 @@ Gets status of height, fee, milestone, blockreward and supply
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getStatus
+    curl -k -X GET http://localhost:18124/api/blocks/getStatus
 
 ###Get blockchain nethash
 
@@ -691,7 +691,7 @@ Gets the nethash of the blockchain on a client.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getNethash
+    curl -k -X GET http://localhost:18124/api/blocks/getNethash
 
 ###Get blockchain milestone
 
@@ -708,7 +708,7 @@ Gets the milestone of the blockchain on a client.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/blocks/getMilestone
+    curl -k -X GET http://localhost:18124/api/blocks/getMilestone
 
 ##Signatures
 
@@ -738,7 +738,7 @@ Gets the second signature status of an account.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/signatures/get?id=<id>
+    curl -k -X GET http://localhost:18124/api/signatures/get?id=<id>
 
 ###Add second signature
 
@@ -766,7 +766,7 @@ Add a second signature to an account.
     
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","secondSecret":"<INSERT SECOND SECRET HERE>","publicKey":"<INSERT PUBLIC KEY HERE>" }' \
-    http://localhost:9305/api/signatures
+    http://localhost:18124/api/signatures
 
 ##Delegates
 
@@ -797,7 +797,7 @@ Puts request to create a delegate.
 
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","secondSecret":"<INSERT SECOND SECRET HERE>","username":"<INSERT USERNAME HERE>" }' \
-    http://localhost:9305/api/delegates
+    http://localhost:18124/api/delegates
 
 ###Get delegates list
 
@@ -820,7 +820,7 @@ Gets list of delegates by provided filter.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/delegates?limit=<limit>
+    curl -k -X GET http://localhost:18124/api/delegates?limit=<limit>
 
 ###Get delegate
 
@@ -855,7 +855,7 @@ Gets delegate by public key or username.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/delegates/get?publicKey=publicKey
+    curl -k -X GET http://localhost:18124/api/delegates/get?publicKey=publicKey
 
 ###Get delegates count
 
@@ -872,7 +872,7 @@ Get total count of registered delegates.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/delegates/count
+    curl -k -X GET http://localhost:18124/api/delegates/count
 
 ###Get votes of account
 
@@ -893,7 +893,7 @@ Get votes by account wallet address.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/accounts/delegates/?address=<address>
+    curl -k -X GET http://localhost:18124/api/accounts/delegates/?address=<address>
 
 ###Get voters
 
@@ -914,7 +914,7 @@ Get voters of delegate.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/delegates/voters?publicKey=<publicKey>
+    curl -k -X GET http://localhost:18124/api/delegates/voters?publicKey=<publicKey>
 
 ###Enable forging on delegate
 
@@ -939,7 +939,7 @@ Enables forging for a delegate on the client node.
 
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
-    http://localhost:9305/api/delegates/forging/enable
+    http://localhost:18124/api/delegates/forging/enable
 
 ###Disable forging on delegate
 
@@ -964,11 +964,11 @@ Disables forging for a delegate on the client node.
 
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
-    http://localhost:9305/api/delegates/forging/disable
+    http://localhost:18124/api/delegates/forging/disable
 
 ###Get forged by account
 
-Get amount of Oxycoin forged by an account.
+Get amount of LWFcoin forged by an account.
 
     GET /api/delegates/forging/getForgedByAccount?generatorPublicKey=generatorPublicKey
 
@@ -983,7 +983,7 @@ Get amount of Oxycoin forged by an account.
 
 **Example**
   
-    curl -k -X GET http://localhost:9305/api/delegates/forging/getForgedByAccount?generatorPublicKey=<generatorPublicKey>
+    curl -k -X GET http://localhost:18124/api/delegates/forging/getForgedByAccount?generatorPublicKey=<generatorPublicKey>
     
 
 ##Apps
@@ -1024,7 +1024,7 @@ Registers a Blockchain Application.
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","secondSecret":"<INSERT SECOND SECRET HERE>"
     "category":<INSERT INTEGER HERE>,"name":"<INSERT APPLICATION NAME HERE>",
     "type":0,"link":"<INSERT LINK TO APPLICATION HERE>"}' \
-    http://localhost:9305/api/dapps
+    http://localhost:18124/api/dapps
 
 ###Get apps
 
@@ -1050,7 +1050,7 @@ Gets a list of Blockchain Applications registered on the network.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps?name=<INSERT APPLICATION NAME HERE>
+    curl -k -X GET http://localhost:18124/api/dapps?name=<INSERT APPLICATION NAME HERE>
 
 ###Get app
 
@@ -1069,7 +1069,7 @@ Gets a specific Blockchain Application by registered id.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/get?id=<id>
+    curl -k -X GET http://localhost:18124/api/dapps/get?id=<id>
 
 ###Search for apps
 
@@ -1092,7 +1092,7 @@ Searches for Blockchain Applications by filter(s) on a node.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/search?installed=1
+    curl -k -X GET http://localhost:18124/api/dapps/search?installed=1
 
 ###Install app
 
@@ -1117,7 +1117,7 @@ Installs a app by id on the node.
 
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
-    http://localhost:9305/api/dapps/install
+    http://localhost:18124/api/dapps/install
 
 ###Installed apps
 
@@ -1136,7 +1136,7 @@ Returns a list of installed apps on the requested node.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/installed
+    curl -k -X GET http://localhost:18124/api/dapps/installed
 
 ###Installed apps Ids
 
@@ -1155,7 +1155,7 @@ Returns a list of installed app ids on the requested node.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/installedIds
+    curl -k -X GET http://localhost:18124/api/dapps/installedIds
 
 ###Uninstall apps
 
@@ -1179,7 +1179,7 @@ Uninstalls a app by id from the requested node.
 
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
-    http://localhost:9305/api/dapps/uninstall
+    http://localhost:18124/api/dapps/uninstall
 
 ###Launch app
 
@@ -1204,7 +1204,7 @@ Launches a app by id on the requested node.
 
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
-    http://localhost:9305/api/dapps/launch
+    http://localhost:18124/api/dapps/launch
 
 ###Installing
 
@@ -1223,7 +1223,7 @@ Returns a list of app ids currently being installed on the requested node.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/installing
+    curl -k -X GET http://localhost:18124/api/dapps/installing
 
 ###Uninstalling
 
@@ -1242,7 +1242,7 @@ Returns a list of app ids currently being uninstalled on the client node.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/uninstalling
+    curl -k -X GET http://localhost:18124/api/dapps/uninstalling
 
 ###Launched
 
@@ -1261,7 +1261,7 @@ Returns a list of app ids which are currently launched on the client node.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/launched
+    curl -k -X GET http://localhost:18124/api/dapps/launched
 
 ###Categories
 
@@ -1278,7 +1278,7 @@ Returns a full list of app categories.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/dapps/categories
+    curl -k -X GET http://localhost:18124/api/dapps/categories
 
 ###Stop app
 
@@ -1302,7 +1302,7 @@ Stops a app by id on the requested node.
 
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
-    http://localhost:9305/api/dapps/stop
+    http://localhost:18124/api/dapps/stop
 
 ##Multi-Signature
 
@@ -1325,7 +1325,7 @@ Returns a list of multi-signature transactions that waiting for signature by pub
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/multisignatures/pending?publicKey=<publicKey>
+    curl -k -X GET http://localhost:18124/api/multisignatures/pending?publicKey=<publicKey>
 
 ###Create multi-signature account
 
@@ -1353,7 +1353,7 @@ Create a multi-signature account.
 
     curl -k -H "Content-Type: application/json" \
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","lifetime":<INSERT NUMBER HERE>,"min":<INSERT NUMBER OF SIGNATURES HERE>,"keysgroup":["+<INSERT PUBLIC KEY HERE>","+<INSERT PUBLIC KEY HERE>"] }' \
-    http://localhost:9305/api/multisignatures
+    http://localhost:18124/api/multisignatures
 
 ###Sign transaction
 
@@ -1380,7 +1380,7 @@ Signs a transaction that is awaiting signature.
     
     curl -k -H "Content-Type: application/json" \
     -X POST -d '{"secret":"<INSERT SECRET HERE>","transactionId":"<INSERT TRANSACTION ID HERE>"}' \
-    http://localhost:9305/api/multisignatures/sign
+    http://localhost:18124/api/multisignatures/sign
     
 ###Get accounts of multi-signature
 
@@ -1399,7 +1399,7 @@ Gets a list of accounts that are part of a multi-signature account.
 
 **Example**
 
-    curl -k -X GET http://localhost:9305/api/multisignatures/accounts?publicKey=<publicKey>
+    curl -k -X GET http://localhost:18124/api/multisignatures/accounts?publicKey=<publicKey>
 
 
 
@@ -1409,4 +1409,4 @@ This API is based on the LISK API, the syntax is nearly the same.
 
 ###Informations
 Initial Written by List Team<br />
-Ported to Oxycoin-Github Repo by LeChuckDE
+Ported to LWFcoin-Github Repo by LeChuckDE

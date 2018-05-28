@@ -1,6 +1,6 @@
 # API_Documentation
 
-##Introduction
+## Introduction
 
 LWF client API. All API endpoints are relative to the /api prefix.
 
@@ -23,11 +23,11 @@ Each API entry contains an example call to help provide understanding of how to 
 These examples rely on curl being installed and LWFcoin running on the localhost.
 The examples also include ```<field>;``` use this for easy identification of what needs to be changed for the call to function.
 
-##Accounts
+## Accounts
 
 API calls related to Account functionality.
 
-###Open account
+### Open account
 
 Request information about an account.
 
@@ -59,7 +59,7 @@ POST /api/accounts/open
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
     http://localhost:18124/api/accounts/open
 
-###Get balance
+### Get balance
 
 Request the balance of an account.
 
@@ -78,7 +78,7 @@ address: wallet address of the account
     
     curl -k -X GET http://localhost:18124/api/accounts/getBalance?address=<address>
 
-###Get account public key
+### Get account public key
 
 Get the public key of an account. If the account does not exist the API call will return an error.
 
@@ -97,7 +97,7 @@ address: wallet address of the account
     
     curl -k -X GET http://localhost:18124/api/accounts/getPublicKey?address=<address>
 
-###Generate public key
+### Generate public key
 
 Returns the public key of the provided secret key.
 
@@ -120,7 +120,7 @@ POST /api/accounts/generatePublicKey
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
     http://localhost:18124/api/accounts/generatePublicKey
 
-###Get account
+### Get account
 
 Returns account information of an address.
 
@@ -147,7 +147,7 @@ address: wallet address of an account
     
     curl -k -X GET http://localhost:18124/api/accounts?address=<address>
 
-###Get delegates
+### Get delegates
 
 Returns delegate accounts by address.
 
@@ -167,7 +167,7 @@ address: wallet address of account
 
     curl -k -X GET http://localhost:18124/api/accounts/delegates?address=<address>
 
-###Put delegates
+### Put delegates
 
 Vote for the selected delegates. Maximum of 33 delegates at once.
 
@@ -207,11 +207,11 @@ PUT /api/accounts/delegates
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","publicKey"="<INSERT PUBLICKEY HERE>","delegates":["<INSERT DELEGATE PUBLICKEY HERE>","<INSERT DELEGATE PUBLICKEY HERE>"]}' \
     http://localhost:18124/api/accounts/delegates
     
-##Loader
+## Loader
 
 Provides the synchronization and loading information of a client. These API calls will only work if the client is syncing or loading.
 
-###Get loading status
+### Get loading status
 
 Returns the status of the blockchain
 
@@ -230,7 +230,7 @@ GET /api/loader/status
     
     curl -k -X GET http://localhost:18124/api/loader/status/
     
-###Get synchronization status
+### Get synchronization status
 
 Get the synchronization status of the client.
 
@@ -249,11 +249,11 @@ GET /api/loader/status/sync
     
     curl -k -X GET http://localhost:18124/api/loader/status/sync
     
-##Transactions
+## Transactions
 
 API calls related to transactions.
 
-###Get list of transactions
+### Get list of transactions
 
 List of transactions matched by provided parameters.
 
@@ -293,7 +293,7 @@ All parameters join by "OR".
 
     curl -k -X GET http://localhost:18124/api/transactions?recipientId=<recipientId>
     
-###Send transaction
+### Send transaction
 
 Send transaction to broadcast network.
 
@@ -329,7 +329,7 @@ PUT /api/transactions
     "amount":<INSERT AMOUNT HERE>,"recipientId":"<INSERT WALLET ADDRESS HERE>"}' \
     http://localhost:18124/api/transactions
     
-###Get transaction
+### Get transaction
 
 Get transaction that matches the provided id.
 
@@ -362,7 +362,7 @@ id: String of transaction (String)
 
     curl -k -X GET http://localhost:18124/api/transactions/get?id=<id>
 
-###Get unconfirmed transaction
+### Get unconfirmed transaction
 
 Get unconfirmed transaction that matches the provided id.
 
@@ -394,7 +394,7 @@ id: String of transaction (String)
 
     curl -k -X GET http://localhost:18124/api/transactions/unconfirmed/get?id=<id>
 
-###Get list of unconfirmed transactions
+### Get list of unconfirmed transactions
 
 Gets a list of unconfirmed transactions.
 
@@ -411,11 +411,11 @@ GET /api/transactions/unconfirmed
 
     curl -k -X GET http://localhost:18124/api/transactions/unconfirmed
 
-##Peers
+## Peers
 
 Peers API.
 
-###Get peers list
+### Get peers list
 
 Gets list of peers from provided filter parameters.
 
@@ -447,7 +447,7 @@ All parameters joins by "OR".
     
     curl -k -X GET http://localhost:18124/api/peers
     
-###Get peer
+### Get peer
 
 Gets peer by IP address and port
 
@@ -467,7 +467,7 @@ GET /api/peers/get?ip=ip&port=port
 
     curl -k -X GET http://localhost:18124/api/peers/get?ip=<ip>&port=<port>
 
-###Get peer version, build time
+### Get peer version, build time
 
 Gets a list peer versions and build times
 
@@ -486,11 +486,11 @@ Gets a list peer versions and build times
 
     curl -k -X GET http://localhost:18124/api/peers/version
     
-##Blocks
+## Blocks
 
 Blocks management API.
 
-###Get block
+### Get block
 
 Gets block by provided id.
 
@@ -529,7 +529,7 @@ Gets block by provided id.
 
     curl -k -X GET http://localhost:18124/api/blocks/get?id=<id>
 
-###Get blocks
+### Get blocks
 
 Gets all blocks by provided filter(s).
 
@@ -563,7 +563,7 @@ All parameters joins by OR.
 
     curl -k -X GET http://localhost:18124/api/blocks?generatorPublicKey=<generatorPublicKey>
 
-###Get blockchain fee
+### Get blockchain fee
 
 Get transaction fee for sending "normal" transactions.
 
@@ -580,7 +580,7 @@ Get transaction fee for sending "normal" transactions.
 
     curl -k -X GET http://localhost:18124/api/blocks/getFee
 
-###Get blockchain fees schedule
+### Get blockchain fees schedule
 
 Get transaction fee for all types of transactions.
 
@@ -604,7 +604,7 @@ Get transaction fee for all types of transactions.
 
     curl -k -X GET http://localhost:18124/api/blocks/getFees
 
-###Get blockchain reward schedule
+### Get blockchain reward schedule
 
 Gets the forging reward for blocks.
 
@@ -621,7 +621,7 @@ Gets the forging reward for blocks.
 
     curl -k -X GET http://localhost:18124/api/blocks/getReward
 
-###Get supply of available LWFcoin
+### Get supply of available LWFcoin
 
 Gets the total amount of LWFcoin in circulation
 
@@ -638,7 +638,7 @@ Gets the total amount of LWFcoin in circulation
 
     curl -k -X GET http://localhost:18124/api/blocks/getSupply
 
-###Get blockchain height
+### Get blockchain height
 
 Gets the blockchain height of the client.
 
@@ -655,7 +655,7 @@ Gets the blockchain height of the client.
 
     curl -k -X GET http://localhost:18124/api/blocks/getHeight
 
-###Gets status of height, fee, milestone, blockreward and supply
+### Gets status of height, fee, milestone, blockreward and supply
 
 Gets status of height, fee, milestone, blockreward and supply
 
@@ -676,7 +676,7 @@ Gets status of height, fee, milestone, blockreward and supply
 
     curl -k -X GET http://localhost:18124/api/blocks/getStatus
 
-###Get blockchain nethash
+### Get blockchain nethash
 
 Gets the nethash of the blockchain on a client.
 
@@ -693,7 +693,7 @@ Gets the nethash of the blockchain on a client.
 
     curl -k -X GET http://localhost:18124/api/blocks/getNethash
 
-###Get blockchain milestone
+### Get blockchain milestone
 
 Gets the milestone of the blockchain on a client.
 
@@ -710,11 +710,11 @@ Gets the milestone of the blockchain on a client.
 
     curl -k -X GET http://localhost:18124/api/blocks/getMilestone
 
-##Signatures
+## Signatures
 
 Signature management API.
 
-###Get signature
+### Get signature
 
 Gets the second signature status of an account.
 
@@ -740,7 +740,7 @@ Gets the second signature status of an account.
 
     curl -k -X GET http://localhost:18124/api/signatures/get?id=<id>
 
-###Add second signature
+### Add second signature
 
 Add a second signature to an account.
 
@@ -768,11 +768,11 @@ Add a second signature to an account.
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","secondSecret":"<INSERT SECOND SECRET HERE>","publicKey":"<INSERT PUBLIC KEY HERE>" }' \
     http://localhost:18124/api/signatures
 
-##Delegates
+## Delegates
 
 Delegates API.
 
-###Enable delegate on account
+### Enable delegate on account
 
 Puts request to create a delegate.
 
@@ -799,7 +799,7 @@ Puts request to create a delegate.
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","secondSecret":"<INSERT SECOND SECRET HERE>","username":"<INSERT USERNAME HERE>" }' \
     http://localhost:18124/api/delegates
 
-###Get delegates list
+### Get delegates list
 
 Gets list of delegates by provided filter.
 
@@ -822,7 +822,7 @@ Gets list of delegates by provided filter.
 
     curl -k -X GET http://localhost:18124/api/delegates?limit=<limit>
 
-###Get delegate
+### Get delegate
 
 Gets delegate by public key or username.
 
@@ -857,7 +857,7 @@ Gets delegate by public key or username.
 
     curl -k -X GET http://localhost:18124/api/delegates/get?publicKey=publicKey
 
-###Get delegates count
+### Get delegates count
 
 Get total count of registered delegates.
 
@@ -874,7 +874,7 @@ Get total count of registered delegates.
 
     curl -k -X GET http://localhost:18124/api/delegates/count
 
-###Get votes of account
+### Get votes of account
 
 Get votes by account wallet address.
 
@@ -895,7 +895,7 @@ Get votes by account wallet address.
 
     curl -k -X GET http://localhost:18124/api/accounts/delegates/?address=<address>
 
-###Get voters
+### Get voters
 
 Get voters of delegate.
 
@@ -916,7 +916,7 @@ Get voters of delegate.
 
     curl -k -X GET http://localhost:18124/api/delegates/voters?publicKey=<publicKey>
 
-###Enable forging on delegate
+### Enable forging on delegate
 
 Enables forging for a delegate on the client node.
 
@@ -941,7 +941,7 @@ Enables forging for a delegate on the client node.
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
     http://localhost:18124/api/delegates/forging/enable
 
-###Disable forging on delegate
+### Disable forging on delegate
 
 Disables forging for a delegate on the client node.
 
@@ -966,7 +966,7 @@ Disables forging for a delegate on the client node.
     -X POST -d '{"secret":"<INSERT SECRET HERE>"}' \
     http://localhost:18124/api/delegates/forging/disable
 
-###Get forged by account
+### Get forged by account
 
 Get amount of LWFcoin forged by an account.
 
@@ -986,11 +986,11 @@ Get amount of LWFcoin forged by an account.
     curl -k -X GET http://localhost:18124/api/delegates/forging/getForgedByAccount?generatorPublicKey=<generatorPublicKey>
     
 
-##Apps
+## Apps
 
 Blockchain Applications API.
 
-##Apps
+## Apps
 
 Registers a Blockchain Application.
 
@@ -1026,7 +1026,7 @@ Registers a Blockchain Application.
     "type":0,"link":"<INSERT LINK TO APPLICATION HERE>"}' \
     http://localhost:18124/api/dapps
 
-###Get apps
+### Get apps
 
 Gets a list of Blockchain Applications registered on the network.
 
@@ -1052,7 +1052,7 @@ Gets a list of Blockchain Applications registered on the network.
 
     curl -k -X GET http://localhost:18124/api/dapps?name=<INSERT APPLICATION NAME HERE>
 
-###Get app
+### Get app
 
 Gets a specific Blockchain Application by registered id.
 
@@ -1071,7 +1071,7 @@ Gets a specific Blockchain Application by registered id.
 
     curl -k -X GET http://localhost:18124/api/dapps/get?id=<id>
 
-###Search for apps
+### Search for apps
 
 Searches for Blockchain Applications by filter(s) on a node.
 
@@ -1094,7 +1094,7 @@ Searches for Blockchain Applications by filter(s) on a node.
 
     curl -k -X GET http://localhost:18124/api/dapps/search?installed=1
 
-###Install app
+### Install app
 
 Installs a app by id on the node.
 
@@ -1119,7 +1119,7 @@ Installs a app by id on the node.
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
     http://localhost:18124/api/dapps/install
 
-###Installed apps
+### Installed apps
 
 Returns a list of installed apps on the requested node.
 
@@ -1138,7 +1138,7 @@ Returns a list of installed apps on the requested node.
 
     curl -k -X GET http://localhost:18124/api/dapps/installed
 
-###Installed apps Ids
+### Installed apps Ids
 
 Returns a list of installed app ids on the requested node.
 
@@ -1157,7 +1157,7 @@ Returns a list of installed app ids on the requested node.
 
     curl -k -X GET http://localhost:18124/api/dapps/installedIds
 
-###Uninstall apps
+### Uninstall apps
 
 Uninstalls a app by id from the requested node.
 
@@ -1181,7 +1181,7 @@ Uninstalls a app by id from the requested node.
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
     http://localhost:18124/api/dapps/uninstall
 
-###Launch app
+### Launch app
 
 Launches a app by id on the requested node.
 
@@ -1206,7 +1206,7 @@ Launches a app by id on the requested node.
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
     http://localhost:18124/api/dapps/launch
 
-###Installing
+### Installing
 
 Returns a list of app ids currently being installed on the requested node.
 
@@ -1225,7 +1225,7 @@ Returns a list of app ids currently being installed on the requested node.
 
     curl -k -X GET http://localhost:18124/api/dapps/installing
 
-###Uninstalling
+### Uninstalling
 
 Returns a list of app ids currently being uninstalled on the client node.
 
@@ -1244,7 +1244,7 @@ Returns a list of app ids currently being uninstalled on the client node.
 
     curl -k -X GET http://localhost:18124/api/dapps/uninstalling
 
-###Launched
+### Launched
 
 Returns a list of app ids which are currently launched on the client node.
 
@@ -1263,7 +1263,7 @@ Returns a list of app ids which are currently launched on the client node.
 
     curl -k -X GET http://localhost:18124/api/dapps/launched
 
-###Categories
+### Categories
 
 Returns a full list of app categories.
 
@@ -1280,7 +1280,7 @@ Returns a full list of app categories.
 
     curl -k -X GET http://localhost:18124/api/dapps/categories
 
-###Stop app
+### Stop app
 
 Stops a app by id on the requested node.
 
@@ -1304,11 +1304,11 @@ Stops a app by id on the requested node.
     -X POST -d '{"id":"<INSERT ID HERE>"}' \
     http://localhost:18124/api/dapps/stop
 
-##Multi-Signature
+## Multi-Signature
 
 Multi-signature API.
 
-###Get pending multi-signature transactions
+### Get pending multi-signature transactions
 
 Returns a list of multi-signature transactions that waiting for signature by publicKey.
 
@@ -1327,7 +1327,7 @@ Returns a list of multi-signature transactions that waiting for signature by pub
 
     curl -k -X GET http://localhost:18124/api/multisignatures/pending?publicKey=<publicKey>
 
-###Create multi-signature account
+### Create multi-signature account
 
 Create a multi-signature account.
 
@@ -1355,7 +1355,7 @@ Create a multi-signature account.
     -X PUT -d '{"secret":"<INSERT SECRET HERE>","lifetime":<INSERT NUMBER HERE>,"min":<INSERT NUMBER OF SIGNATURES HERE>,"keysgroup":["+<INSERT PUBLIC KEY HERE>","+<INSERT PUBLIC KEY HERE>"] }' \
     http://localhost:18124/api/multisignatures
 
-###Sign transaction
+### Sign transaction
 
 Signs a transaction that is awaiting signature.
 
@@ -1382,7 +1382,7 @@ Signs a transaction that is awaiting signature.
     -X POST -d '{"secret":"<INSERT SECRET HERE>","transactionId":"<INSERT TRANSACTION ID HERE>"}' \
     http://localhost:18124/api/multisignatures/sign
     
-###Get accounts of multi-signature
+### Get accounts of multi-signature
 
 Gets a list of accounts that are part of a multi-signature account.
 
@@ -1403,10 +1403,10 @@ Gets a list of accounts that are part of a multi-signature account.
 
 
 
-##Credits
+## Credits
 
 This API is based on the LISK API, the syntax is nearly the same.
 
-###Informations
+### Informations
 Initial Written by List Team<br />
 Ported to LWFcoin-Github Repo by LeChuckDE
